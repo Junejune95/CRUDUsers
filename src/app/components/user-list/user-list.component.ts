@@ -1,4 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersResult,User } from 'src/app/interfaces/users';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -13,11 +14,11 @@ export class UserListComponent implements OnInit {
   breakpoint?: number;
   public users=new Array<User>();
 
-  constructor(private _service:UsersService) { }
+  constructor(private _service:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
     this.getUserList()
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
   }
 
   getUserList(){
@@ -32,7 +33,10 @@ export class UserListComponent implements OnInit {
 
   
   onResize(event:any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
   }
 
+  goToRoute(){
+      this._router.navigate(['create']);
+  }
 }

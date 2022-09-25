@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UsersResult } from "../interfaces/users";
 import { API_URL } from "../interfaces/constants";
@@ -7,10 +7,20 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
+  public headers = new HttpHeaders();
 
-  constructor(private http:HttpClient) { }
+  constructor(private httpClient:HttpClient) { 
+    this.headers=this.headers.append(
+      'app-id','632ff2b33c1cc91cfa43d9b4'
+    )
+  }
+
+
 
   getUsers(): Observable<UsersResult>{
-    return this.http.get<UsersResult>(API_URL+'users');
+   
+    return this.httpClient.get<UsersResult>(API_URL+'user',{
+      headers:this.headers
+    });
   }
 }

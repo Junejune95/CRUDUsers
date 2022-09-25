@@ -15,16 +15,16 @@ describe('UserListComponent', () => {
     userServiceSpy.getUsers.and.callFake(function() {
       return of({
         "page": 2,
-        "per_page": 6,
+        "limit": 6,
         "total": 12,
-        "total_pages": 2,
         "data": [
           {
             id:1,
             email: 'tt@gmail.com',
-            first_name:'t',
-            last_name:'t',
-            avatar:''
+            firstName:'t',
+            lastName:'t',
+            picture:'',
+            title:''
           }
         ]
       });

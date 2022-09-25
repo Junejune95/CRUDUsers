@@ -30,13 +30,15 @@ describe('UsersService', () => {
       console.log('Result Verify');
     })
 
-    const req=httpMock.expectOne(API_URL+'users');
+    const req=httpMock.expectOne(API_URL+'user');
     expect(req.request.method).toBe('GET');
     req.flush({
       data:[{
         email:'zune@gmail.com',
-        first_name:'Zune',
-        avator:'https',
+        lastName:'Zune',
+        firstName:'Zune',
+        picture:'https',
+        title:'',
         id:1
       }]
     })

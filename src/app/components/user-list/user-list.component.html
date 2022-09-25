@@ -1,17 +1,20 @@
 <div class="container">
+    <div class="btn-wrapper">
+        <button mat-raised-button color="primary" (click)="goToRoute()">Create</button>
+    </div>
     <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
         <mat-grid-tile *ngFor="let user of users">
 
             <mat-card class="example-card">
 
                 <div mat-card-avatar class="example-header-image"
-                    [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}">
+                    [ngStyle]="{'background-image': 'url(' + user.picture + ')'}">
 
 
                 </div>
 
-                <mat-card-title>{{user.first_name}}</mat-card-title>
-                <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+                <mat-card-title>{{user.firstName}}</mat-card-title>
+                <mat-card-subtitle>{{user.title}}</mat-card-subtitle>
             </mat-card>
         </mat-grid-tile>
 
