@@ -1,29 +1,41 @@
-<form [formGroup]="createForm">
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName">
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName">
-    </mat-form-field>
+<div class="container">
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email">
-      
+        <form [formGroup]="createForm">
+            <mat-card>
 
-    </mat-form-field>
-    <ng-container *ngIf="f['email'].touched && f['email'].invalid">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+        
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email">
+              
+        
+            </mat-form-field>
+            <ng-container *ngIf="f['email'].touched && f['email'].invalid">
+        
+                <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">
+                    Please enter a valid email address
+                  </mat-error>
+        
+                  <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">
+                    Email is <strong>example@gmail.com</strong>
+                  </mat-error>
+            </ng-container>
 
-        <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">
-            Please enter a valid email address
-          </mat-error>
-
-          <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">
-            Email is <strong>example@gmail.com</strong>
-          </mat-error>
-    </ng-container>
-
-    <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
-</form>
+            <mat-card-actions>
+                <button mat-raised-button color="disabled" (click)="onCreate()">Cancel</button>
+                <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+                </mat-card-actions>
+            
+        </mat-card>
+    
+        </form>
+  
+</div>

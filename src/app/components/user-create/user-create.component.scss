@@ -1,9 +1,23 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+form{
+  max-width: 500px;
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+  margin-top: 30px;
+}
+
+mat-card{
+  padding: 20px;
+}
+.mat-form-field{
+  width: 100%;
+}
+.container {
+  display: grid;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: flex-end;
+}

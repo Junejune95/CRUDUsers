@@ -17,13 +17,16 @@ export class UserListComponent implements OnInit {
   constructor(private _service:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
-    this.getUserList()
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
+    this.getUserList();
+    console.log(window.innerWidth)
+    // this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
+    this.onResize(window)
   }
 
   getUserList(){
     this._service.getUsers().subscribe((res:UsersResult)=>{
       console.log(res)
+     
       this.users=res.data;
     })
   }
@@ -32,8 +35,22 @@ export class UserListComponent implements OnInit {
 
 
   
-  onResize(event:any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
+  onResize(value:any) {
+    console.log(window.innerWidth);
+    const innerWidth=value.innerWidth;
+    if(innerWidth>1024){
+      this.breakpoint=5
+    }else if(innerWidth<=1024 && innerWidth>912){
+      this.breakpoint=4;
+    }else if(innerWidth<=912 && innerWidth>768){
+      this.breakpoint=3;
+    }else if(innerWidth<=768 && innerWidth>412){
+      this.breakpoint=2
+    }else{
+      this.breakpoint=1
+
+    }
+    // this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
   }
 
   goToRoute(){

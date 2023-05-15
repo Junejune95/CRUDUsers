@@ -1,12 +1,4 @@
-.container {
-    margin-top: 40px;
-}
 
-.mat-card-avatar.example-header-image {
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-}
 
 .mat-card{
     width: 100%;
@@ -15,5 +7,20 @@
 
 .btn-wrapper{
     display: flex;
-    justify-content: end;
+    justify-content:flex-end;
+}
+
+.mat-card-header-text{
+    margin: 0 !important;
+}
+
+.mat-card-sm-image{
+    margin-right: 10px;
+}
+
+mat-card-actions.mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #c3c3c36e;
+    margin-top: 12px;
 }
