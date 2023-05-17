@@ -5,17 +5,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
-
   exports: [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
 })
-export class MaterialCustomModule { }
+export class MaterialCustomModule {}

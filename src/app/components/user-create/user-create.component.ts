@@ -22,7 +22,11 @@ export class UserCreateComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  constructor(private _fb: FormBuilder, private _userService: UsersService,private _router:Router) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _userService: UsersService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -42,7 +46,7 @@ export class UserCreateComponent implements OnInit {
     return this.createForm.controls;
   }
 
-  goBack(){
-    this._router.navigate([''])
+  goBack() {
+    this._router.navigate(['']);
   }
 }

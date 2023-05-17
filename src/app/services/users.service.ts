@@ -13,10 +13,13 @@ export class UsersService {
     this.headers = this.headers.append('app-id', '632ff2b33c1cc91cfa43d9b4');
   }
 
-  getUsers(): Observable<UsersResult> {
-    return this.httpClient.get<UsersResult>(API_URL + 'user', {
-      headers: this.headers,
-    });
+  getUsers(pageSize: number, pageLimit: number): Observable<UsersResult> {
+    return this.httpClient.get<UsersResult>(
+      API_URL + 'user?limit=' + pageLimit + '&page=' + pageSize,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   onCreateUser(user: User) {
