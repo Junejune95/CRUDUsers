@@ -30,7 +30,7 @@
   </mat-grid-list>
 
   <mat-paginator
-  [pageSize]="pageSize"
+    [pageSize]="pageSize"
     [length]="length"
     [pageSizeOptions]="[10, 50, 100]"
     (page)="handlePageEvent($event)"
@@ -38,3 +38,5 @@
   >
   </mat-paginator>
 </div>
+
+<app-loader></app-loader>

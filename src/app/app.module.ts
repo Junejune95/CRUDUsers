@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-import { MaterialCustomModule } from 'src/app/material.module';
-import { UserListComponent } from 'src/app/components/user-list/user-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { UserCreateComponent } from 'src/app/components/user-create/user-create.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// modules import
+import { MaterialCustomModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
+
+// compoents import
+import { AppComponent } from './app.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +29,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialCustomModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+       provide: HTTP_INTERCEPTORS,
+       useClass: LoaderInterceptor,
+       multi: true,
+    },
+ ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
