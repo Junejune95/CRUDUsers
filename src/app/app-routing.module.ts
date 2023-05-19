@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserCreateComponent } from 'src/app/components/user-create/user-create.component';
-import { UserListComponent } from 'src/app/components/user-list/user-list.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
-{
-  path:'',
-  component:UserListComponent
-},
-{
-  path:'create',
-  component:UserCreateComponent
-}
+  {
+    path: '',
+    component: UserListComponent,
+  },
+  {
+    path: 'create',
+    component: UserCreateComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
