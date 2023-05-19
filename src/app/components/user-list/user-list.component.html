@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isLoading==false">
   <div class="btn-wrapper">
     <button mat-raised-button color="primary" (click)="goToRoute()">
       Create
@@ -38,5 +38,3 @@
   >
   </mat-paginator>
 </div>
-
-<app-loader></app-loader>

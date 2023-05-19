@@ -35,11 +35,13 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
             case 400: {
               errorMsg = `Error Code: ${error.status},  Message: ${error.error.data.email}`;
               this.snackBar.open(errorMsg, '', this.config);
+              break;
             }
 
             default: {
               errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
               this.snackBar.open(errorMsg, '', this.config);
+              break;
             }
           }
         }
