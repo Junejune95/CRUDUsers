@@ -1,42 +1,60 @@
 <div class="container">
   <mat-card class="from-wrapper">
     <form [formGroup]="createForm">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" />
-      </mat-form-field>
-      <ng-container *ngIf="f['firstName'].touched && f['firstName'].invalid">
-        <mat-error
-          *ngIf="f['firstName'].errors && f['firstName'].errors['required']"
-        >
-          * First Name is required
-        </mat-error>
+      <mat-grid-list cols="3" rowHeight="3:1" [gutterSize]="'10px'">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Select Title</mat-label>
+            <mat-select>
+              <mat-option [value]="title" *ngFor="let title of titleList">{{
+                title
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+          <ng-container
+            *ngIf="f['firstName'].touched && f['firstName'].invalid"
+          >
+            <mat-error
+              *ngIf="f['firstName'].errors && f['firstName'].errors['required']"
+            >
+              * First Name is required
+            </mat-error>
 
-        <mat-error
-          *ngIf="f['firstName'].errors && f['firstName'].errors['minlength']"
-        >
-          * Minimum number allows 2
-        </mat-error>
-      </ng-container>
+            <mat-error
+              *ngIf="
+                f['firstName'].errors && f['firstName'].errors['minlength']
+              "
+            >
+              * Minimum number allows 2
+            </mat-error>
+          </ng-container>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+          <ng-container *ngIf="f['lastName'].touched && f['lastName'].invalid">
+            <mat-error
+              *ngIf="f['lastName'].errors && f['lastName'].errors['required']"
+            >
+              * Last Name is required
+            </mat-error>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" />
-      </mat-form-field>
-
-      <ng-container *ngIf="f['lastName'].touched && f['lastName'].invalid">
-        <mat-error
-          *ngIf="f['lastName'].errors && f['lastName'].errors['required']"
-        >
-          * Last Name is required
-        </mat-error>
-
-        <mat-error
-          *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']"
-        >
-          *Minimum number allows 2
-        </mat-error>
-      </ng-container>
+            <mat-error
+              *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']"
+            >
+              *Minimum number allows 2
+            </mat-error>
+          </ng-container>
+        </mat-grid-tile>
+      </mat-grid-list>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
@@ -57,8 +75,21 @@
         <button mat-raised-button color="disabled" (click)="goBack()">
           Cancel
         </button>
-        <button mat-raised-button color="primary" (click)="onCreate()">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCreate()"
+          *ngIf="!editUserId"
+        >
           Create
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCreate()"
+          *ngIf="editUserId"
+        >
+          Edit
         </button>
       </mat-card-actions>
     </form>

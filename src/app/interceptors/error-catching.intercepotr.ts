@@ -25,21 +25,25 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
+      catchError((errorResponse: HttpErrorResponse) => {
         let errorMsg = '';
-        if (error.error instanceof ErrorEvent) {
+        if (errorResponse.error instanceof ErrorEvent) {
           console.log('This is client side error');
-          errorMsg = `Error: ${error.error.message}`;
+          errorMsg = `Error: ${errorResponse.error.message}`;
         } else {
-          switch (error.status) {
+          switch (errorResponse.status) {
             case 400: {
-              errorMsg = `Error Code: ${error.status},  Message: ${error.error.data.email}`;
+              errorMsg = `Error Code: ${errorResponse.status},  Message: ${
+                errorResponse.error?.data
+                  ? errorResponse.error?.data?.email
+                  : errorResponse.error.error
+              }`;
               this.snackBar.open(errorMsg, '', this.config);
               break;
             }
 
             default: {
-              errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+              errorMsg = `Error Code: ${errorResponse.status},  Message: ${errorResponse.message}`;
               this.snackBar.open(errorMsg, '', this.config);
               break;
             }

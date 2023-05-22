@@ -11,5 +11,5 @@ export interface User {
   firstName: string;
   lastName: string;
   picture?: string;
-  title?: string;
+  title?: 'mr' | 'ms' | 'mrs' | 'miss' | 'dr' | string;
 }

@@ -27,4 +27,10 @@ export class UsersService {
       headers: this.headers,
     });
   }
+
+  getUserDetailById(id: string) {
+    return this.httpClient.get<User>(API_URL + 'user/' + id, {
+      headers: this.headers,
+    });
+  }
 }

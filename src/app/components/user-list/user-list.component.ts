@@ -15,11 +15,11 @@ export class UserListComponent implements OnInit {
   pageIndex = 0;
   breakpoint?: number;
   public users = new Array<User>();
-  isLoading:boolean=false;
+  isLoading: boolean = false;
   constructor(private _service: UsersService, private _router: Router) {}
 
   ngOnInit(): void {
-    this.isLoading=true;
+    this.isLoading = true;
     this.getUserList();
     console.log(window.innerWidth);
     // this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
@@ -32,7 +32,7 @@ export class UserListComponent implements OnInit {
       .subscribe((res: UsersResult) => {
         this.users = res.data;
         this.length = res.total;
-        this.isLoading=false;
+        this.isLoading = false;
       });
   }
 
@@ -60,7 +60,11 @@ export class UserListComponent implements OnInit {
     this.getUserList();
   }
 
-  goToRoute() {
+  onRedirectToCreatePage() {
     this._router.navigate(['create']);
+  }
+
+  onRedirectToEditPage(id: number) {
+    this._router.navigate(['edit', id]);
   }
 }
