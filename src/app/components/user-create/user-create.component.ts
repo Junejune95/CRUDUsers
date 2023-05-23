@@ -23,6 +23,9 @@ export class UserCreateComponent implements OnInit {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     title: new FormControl(''),
+    phone: new FormControl(''),
+    gender: new FormControl(''),
+    dateOfBirth: new FormControl(''),
   });
 
   constructor(
@@ -47,6 +50,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   onCreate() {
+    console.log(this.createForm.value);
     if (!this.createForm.valid) return;
     let user: User = {
       firstName: this.createForm.value.firstName!,
