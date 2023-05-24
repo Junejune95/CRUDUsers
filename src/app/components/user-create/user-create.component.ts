@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../interfaces/users';
@@ -10,6 +10,9 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./user-create.component.scss'],
 })
 export class UserCreateComponent implements OnInit {
+  breakpoint?: number;
+  breakpoint2?: number;
+
   titleList: Array<string> = ['mr', 'ms', 'mrs', 'miss', 'dr'];
   editUserId?: string;
   public createForm = this._fb.group({
@@ -36,6 +39,7 @@ export class UserCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.onResize(window);
     if (this._activeRoute.snapshot.paramMap.get('id')) {
       this.editUserId = this._activeRoute.snapshot.paramMap.get('id')!;
       this.getUserById();
@@ -68,5 +72,18 @@ export class UserCreateComponent implements OnInit {
 
   goBack() {
     this._router.navigate(['']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(value: any) {
+    const innerWidth = window.innerWidth;
+    if (innerWidth < 768) {
+      this.breakpoint = 1;
+      this.breakpoint2 = 1;
+    } else {
+      this.breakpoint = 2;
+      this.breakpoint2 = 3;
+    }
+    // this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
   }
 }
