@@ -22,7 +22,7 @@ export class UsersService {
     );
   }
 
-  onCreateUser(user: User) {
+  onCreateUser(user: any) {
     return this.httpClient.post<any>(API_URL + 'user/create', user, {
       headers: this.headers,
     });

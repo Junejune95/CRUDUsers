@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../interfaces/users';
 import { UsersService } from '../../services/users.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-user-create',
@@ -28,7 +29,7 @@ export class UserCreateComponent implements OnInit {
     title: new FormControl(''),
     phone: new FormControl(''),
     gender: new FormControl(''),
-    dateOfBirth: new FormControl(''),
+    dateOfBirth: new FormControl(new Date().toISOString()),
   });
 
   constructor(
@@ -36,7 +37,7 @@ export class UserCreateComponent implements OnInit {
     private _userService: UsersService,
     private _router: Router,
     private _activeRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.onResize(window);
@@ -48,21 +49,18 @@ export class UserCreateComponent implements OnInit {
 
   getUserById() {
     console.log(this.editUserId);
-    this._userService.getUserDetailById(this.editUserId!).subscribe((res) => {
-      console.log(res);
-    });
+    this._userService.getUserDetailById(this.editUserId!).
+      pipe(first()).
+      subscribe((res) => {
+        this.createForm.patchValue(res);
+      });
   }
 
   onCreate() {
     console.log(this.createForm.value);
     if (!this.createForm.valid) return;
-    let user: User = {
-      firstName: this.createForm.value.firstName!,
-      lastName: this.createForm.value.lastName!,
-      email: this.createForm.value.email!,
-      title: this.createForm.value.title!,
-    };
-    this._userService.onCreateUser(user).subscribe((res) => {
+
+    this._userService.onCreateUser(this.createForm.value).subscribe((res) => {
       console.log(res);
     });
   }

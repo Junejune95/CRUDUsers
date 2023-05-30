@@ -12,4 +12,7 @@ export interface User {
   lastName: string;
   picture?: string;
   title?: 'mr' | 'ms' | 'mrs' | 'miss' | 'dr' | string;
+  phone?:string;
+  gender?:string;
+  dateOfBirth?:string
 }

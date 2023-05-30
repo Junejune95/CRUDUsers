@@ -1,6 +1,12 @@
 .from-wrapper {
   width: 800px;
-  // height: 260px;
+  height: 350px;
+}
+
+.d-flex{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .mat-form-field,
@@ -19,5 +25,12 @@ mat-card-actions {
 
 mat-error {
   margin-bottom: 10px;
+  width: 100%;
+}
+
+
+.mat-radio-button {
+  margin-left: 16px;
+  margin-top: 16px;
 }
 

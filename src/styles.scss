@@ -22,3 +22,8 @@ body {
 .mat-icon-button {
   float: right;
 }
+
+mat-grid-tile > .mat-grid-tile-content{
+  display: flex;
+  align-items: start;
+}
