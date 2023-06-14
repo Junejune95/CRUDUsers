@@ -1,4 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { UsersResult, User } from '../../interfaces/users';
@@ -16,7 +18,12 @@ export class UserListComponent implements OnInit {
   breakpoint?: number;
   public users = new Array<User>();
   isLoading: boolean = false;
-  constructor(private _service: UsersService, private _router: Router) {}
+
+  constructor(
+    private _service: UsersService,
+    private _router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -67,4 +74,16 @@ export class UserListComponent implements OnInit {
   onRedirectToEditPage(id: number) {
     this._router.navigate(['edit', id]);
   }
+
+  openDeleteDialog(user: any) {
+    this.dialog.open(Dialog);
+  }
 }
+
+@Component({
+  selector: 'delete-dialog',
+  templateUrl: 'delete-dialog.component.html',
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule],
+})
+export class Dialog {}

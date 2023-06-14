@@ -1,21 +1,23 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../interfaces/users';
 import { UsersService } from '../../services/users.service';
-import { first } from 'rxjs';
+import { first, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.scss'],
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit, OnDestroy {
   breakpoint?: number;
   breakpoint2?: number;
 
   titleList: Array<string> = ['mr', 'ms', 'mrs', 'miss', 'dr'];
   editUserId?: string;
+  subScription?: Subscription = new Subscription();
+
   public createForm = this._fb.group({
     firstName: new FormControl('', [
       Validators.required,
@@ -37,7 +39,7 @@ export class UserCreateComponent implements OnInit {
     private _userService: UsersService,
     private _router: Router,
     private _activeRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.onResize(window);
@@ -48,10 +50,10 @@ export class UserCreateComponent implements OnInit {
   }
 
   getUserById() {
-    console.log(this.editUserId);
-    this._userService.getUserDetailById(this.editUserId!).
-      pipe(first()).
-      subscribe((res) => {
+    this.subScription = this._userService
+      .getUserDetailById(this.editUserId!)
+      .pipe(first())
+      .subscribe((res) => {
         this.createForm.patchValue(res);
       });
   }
@@ -60,10 +62,21 @@ export class UserCreateComponent implements OnInit {
     console.log(this.createForm.value);
     if (!this.createForm.valid) return;
 
-    this._userService.onCreateUser(this.createForm.value).subscribe((res) => {
-      console.log(res);
-    });
+    if (!this.editUserId) {
+      this.subScription = this._userService
+        .onCreateUser(this.createForm.value)
+        .subscribe((res) => {
+          this.goBack();
+        });
+    } else {
+      this.subScription = this._userService
+        .onEditUser(this.editUserId, this.createForm.value)
+        .subscribe((res) => {
+          this.goBack();
+        });
+    }
   }
+
   get f() {
     return this.createForm.controls;
   }
@@ -83,5 +96,9 @@ export class UserCreateComponent implements OnInit {
       this.breakpoint2 = 3;
     }
     // this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
+  }
+
+  ngOnDestroy() {
+    if (this.subScription) this.subScription.unsubscribe();
   }
 }

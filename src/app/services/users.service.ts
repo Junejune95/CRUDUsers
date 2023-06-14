@@ -28,6 +28,11 @@ export class UsersService {
     });
   }
 
+  onEditUser(id: string, user: any) {
+    return this.httpClient.put<any>(API_URL + 'user/' + id, user, {
+      headers: this.headers,
+    });
+  }
   getUserDetailById(id: string) {
     return this.httpClient.get<User>(API_URL + 'user/' + id, {
       headers: this.headers,
