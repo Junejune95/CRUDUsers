@@ -35,4 +35,6 @@ The project aims to showcase how to implement basic CRUD functionality in Angula
 - DummyAPI: https://dummyapi.io/
 - Angular Material: https://material.angular.io/
 
+## Conclusion
 
+This project provides a practical example of a CRUD application built with Angular, utilizing the DummyAPI for data storage. The responsive user interface, global loading interceptor, and error handling enhance the user experience and simplify the development process. Feel free to explore and modify this project to suit your needs.
