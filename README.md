@@ -1,10 +1,18 @@
-# AngularCRUDUsers
+# Angular CRUD Project with DummyAPI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
+This project is an Angular-based CRUD application that utilizes the DummyAPI as a mock backend. It showcases basic Create, Read, Update, and Delete operations. The project also includes a global loading indicator and error handling through the use of an interceptor. The user interface is responsive and built using Angular Material.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* [Introduction](#introduction)
+* [Features](#feature)
+* [Installation](#Installation)
+
+## Introduction
+
+The Angular CRUD project with DummyAPI is a web application built using Angular, Angular Material, and an interceptor for global loading and error handling. It allows users to perform CRUD (Create, Read, Update, Delete) operations on a set of dummy data provided by the DummyAPI.
+
+The project aims to showcase how to implement basic CRUD functionality in Angular, create a responsive user interface using Angular Material components, and handle loading and error scenarios with the help of an interceptor.
 
 ## Code scaffolding
 
