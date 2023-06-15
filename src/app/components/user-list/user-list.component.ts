@@ -99,7 +99,6 @@ export class UserListComponent implements OnInit {
 
   onDeleteUser(id: string) {
     this._service.onDeleteUser(id).subscribe((res) => {
-      console.log(res);
       this.getUserList();
     });
   }

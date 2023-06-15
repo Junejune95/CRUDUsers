@@ -1,26 +1,29 @@
-
-
-.mat-card{
-    width: 100%;
-    margin: 10px;
+.mat-card {
+  width: 100%;
+  margin: 10px;
 }
 
-.btn-wrapper{
-    display: flex;
-    justify-content:flex-end;
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.mat-card-header-text{
-    margin: 0 !important;
+.mat-card-header-text {
+  margin: 0 !important;
 }
 
-.mat-card-sm-image{
-    margin-right: 10px;
+.mat-card-sm-image {
+  margin-right: 10px;
 }
 
 mat-card-actions.mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid #c3c3c36e;
-    margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #c3c3c36e;
+  margin-top: 12px;
+}
+
+.mat-paginator {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
