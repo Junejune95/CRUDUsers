@@ -33,11 +33,13 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
         } else {
           switch (errorResponse.status) {
             case 400: {
-              errorMsg = `Error Code: ${errorResponse.status},  Message: ${
-                errorResponse.error?.data
-                  ? errorResponse.error?.data?.email
-                  : errorResponse.error.error
-              }`;
+              let responseMsg = '';
+              //error message response from api with difference key name depend on error 
+              //so I made error message to accept by custom key name
+              for (let d in errorResponse.error?.data) {
+                responseMsg = errorResponse.error?.data[d];
+              }
+              errorMsg = `Error Code: ${errorResponse.status},  Message: ${responseMsg}`;
               this.snackBar.open(errorMsg, '', this.config);
               break;
             }

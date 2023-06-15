@@ -31,7 +31,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     title: new FormControl(''),
     phone: new FormControl(''),
     gender: new FormControl(''),
-    dateOfBirth: new FormControl(),
+    dateOfBirth: new FormControl(''),
   });
 
   constructor(
@@ -42,7 +42,10 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    //check current screen size define form row
     this.onResize(window);
+    //check userId in url param if id include in param it is edit,if not create form work
+    //if edit user detail by userId and show form with user data
     if (this._activeRoute.snapshot.paramMap.get('id')) {
       this.editUserId = this._activeRoute.snapshot.paramMap.get('id')!;
       this.getUserById();
@@ -54,6 +57,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       .getUserDetailById(this.editUserId!)
       .pipe(first())
       .subscribe((res) => {
+        //data pass in reactive form
         this.createForm.patchValue(res);
       });
   }
@@ -62,19 +66,21 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     console.log(this.createForm.value);
     if (!this.createForm.valid) return;
 
-    if (!this.editUserId) {
-      this.subScription = this._userService
-        .onCreateUser(this.createForm.value)
-        .subscribe((res) => {
-          this.goBack();
-        });
-    } else {
-      this.subScription = this._userService
-        .onEditUser(this.editUserId, this.createForm.value)
-        .subscribe((res) => {
-          this.goBack();
-        });
-    }
+    this.subScription = this._userService
+      .onCreateUser(this.createForm.value)
+      .subscribe((res) => {
+        //create  success go back to list page
+        this.goBack();
+      });
+  }
+
+  onEdit() {
+    this.subScription = this._userService
+      .onEditUser(this.editUserId!, this.createForm.value)
+      .subscribe((res) => {
+        //edit  success go back to list page
+        this.goBack();
+      });
   }
 
   get f() {
@@ -88,10 +94,12 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(value: any) {
     const innerWidth = window.innerWidth;
+    //if screen size less than 768,form column show one
     if (innerWidth < 768) {
       this.breakpoint = 1;
       this.breakpoint2 = 1;
     } else {
+      //if screen size greater than 768,form column show 2 or 3 depend on column
       this.breakpoint = 2;
       this.breakpoint2 = 3;
     }

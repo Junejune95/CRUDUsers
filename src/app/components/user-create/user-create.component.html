@@ -8,7 +8,7 @@
             <mat-select formControlName="title">
               <mat-option [value]="title" *ngFor="let title of titleList">{{
                 title
-                }}</mat-option>
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
@@ -18,14 +18,22 @@
               <mat-label>First Name</mat-label>
               <input matInput formControlName="firstName" />
             </mat-form-field>
-            <ng-container *ngIf="f['firstName'].touched && f['firstName'].invalid">
-              <mat-error *ngIf="f['firstName'].errors && f['firstName'].errors['required']">
+            <ng-container
+              *ngIf="f['firstName'].touched && f['firstName'].invalid"
+            >
+              <mat-error
+                *ngIf="
+                  f['firstName'].errors && f['firstName'].errors['required']
+                "
+              >
                 * First Name is required
               </mat-error>
 
-              <mat-error *ngIf="
+              <mat-error
+                *ngIf="
                   f['firstName'].errors && f['firstName'].errors['minlength']
-                ">
+                "
+              >
                 * Minimum number allows 2
               </mat-error>
             </ng-container>
@@ -38,17 +46,24 @@
               <mat-label>Last Name</mat-label>
               <input matInput formControlName="lastName" />
             </mat-form-field>
-            <ng-container *ngIf="f['lastName'].touched && f['lastName'].invalid">
-              <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['required']">
+            <ng-container
+              *ngIf="f['lastName'].touched && f['lastName'].invalid"
+            >
+              <mat-error
+                *ngIf="f['lastName'].errors && f['lastName'].errors['required']"
+              >
                 * Last Name is required
               </mat-error>
 
-              <mat-error *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']">
+              <mat-error
+                *ngIf="
+                  f['lastName'].errors && f['lastName'].errors['minlength']
+                "
+              >
                 *Minimum number allows 2
               </mat-error>
             </ng-container>
           </div>
-
         </mat-grid-tile>
       </mat-grid-list>
 
@@ -61,11 +76,15 @@
             </mat-form-field>
 
             <ng-container *ngIf="f['email'].touched && f['email'].invalid">
-              <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">
+              <mat-error
+                *ngIf="f['email'].errors && f['email'].errors['required']"
+              >
                 * Please enter a valid email address
               </mat-error>
 
-              <mat-error *ngIf="f['email'].errors && f['email'].errors['email']">
+              <mat-error
+                *ngIf="f['email'].errors && f['email'].errors['email']"
+              >
                 * Email is <strong>example@gmail.com</strong>
               </mat-error>
             </ng-container>
@@ -83,14 +102,24 @@
         <mat-grid-tile>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dateOfBirth"
+            />
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-radio-group aria-label="Select an option" formControlName="gender">
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="gender"
+          >
             <mat-radio-button value="male">Male</mat-radio-button>
             <mat-radio-button value="female">Female</mat-radio-button>
             <mat-radio-button value="other">Other</mat-radio-button>
@@ -101,10 +130,20 @@
         <button mat-raised-button color="disabled" (click)="goBack()">
           Cancel
         </button>
-        <button mat-raised-button color="primary" (click)="onCreate()" *ngIf="!editUserId">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCreate()"
+          *ngIf="!editUserId"
+        >
           Create
         </button>
-        <button mat-raised-button color="primary" (click)="onCreate()" *ngIf="editUserId">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onEdit()"
+          *ngIf="editUserId"
+        >
           Edit
         </button>
       </mat-card-actions>

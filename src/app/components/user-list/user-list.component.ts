@@ -33,8 +33,8 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.getUserList();
-    console.log(window.innerWidth);
-    // this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
+
+    //check current screen size to define ui responsive
     this.onResize(window);
   }
 
@@ -48,6 +48,7 @@ export class UserListComponent implements OnInit {
       });
   }
 
+  //check current screen size and add dynamic break point for ui responsive
   onResize(value: any) {
     console.log(window.innerWidth);
     const innerWidth = value.innerWidth;
@@ -72,20 +73,27 @@ export class UserListComponent implements OnInit {
     this.getUserList();
   }
 
+  //redirect to create page
   onRedirectToCreatePage() {
     this._router.navigate(['create']);
   }
 
+  //redirect to edit page
   onRedirectToEditPage(id: number) {
     this._router.navigate(['edit', id]);
   }
 
   openDeleteDialog(user: any) {
     let dialogRef = this.dialog.open(Dialog, { data: user });
+
     dialogRef.afterClosed().subscribe((res) => {
       // received data from dialog-component
-      console.log(res.userId);
-      this.onDeleteUser(res.userId);
+      //check user Id if user Id is empty is not working,it is just modal close and call user list for any updated
+      if (res.userId) {
+        this.onDeleteUser(res.userId);
+      } else {
+        this.getUserList();
+      }
     });
   }
 
