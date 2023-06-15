@@ -16,7 +16,37 @@
     <mat-grid-tile *ngFor="let user of users">
       <mat-card class="example-card">
         <mat-card-header>
-          <img mat-card-sm-image [src]="user.picture" />
+          <ng-container *ngIf="user?.picture; else emptyPicture">
+            <img mat-card-sm-image [src]="user.picture" />
+          </ng-container>
+          <ng-template #emptyPicture>
+            <ng-container *ngIf="user?.gender; else emptyGender">
+              <ng-container [ngSwitch]="user.gender">
+                <img
+                  mat-card-sm-image
+                  *ngSwitchCase="'female'"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHClmEmk_ZiWtGcmvc5ZGz1KVsLZaqIRdxb39V98aeItzk6zXkr1ZbemE0euOd-uYoWAg&usqp=CAU"
+                />
+                <img
+                  mat-card-sm-image
+                  *ngSwitchCase="'male'"
+                  src="https://static.vecteezy.com/system/resources/previews/014/194/232/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg"
+                />
+                <img
+                  mat-card-sm-image
+                  *ngSwitchCase="'other'"
+                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                />
+              </ng-container>
+            </ng-container>
+            <ng-template #emptyGender>
+              <img
+                mat-card-sm-image
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+              />
+            </ng-template>
+          </ng-template>
+
           <div>
             <mat-card-title
               ><a href="#">{{ user.firstName }} </a>
@@ -33,7 +63,9 @@
           >
             Edit
           </button>
-          <button mat-button color="warn" (click)="openDeleteDialog(user!)">Delete</button>
+          <button mat-button color="warn" (click)="openDeleteDialog(user!)">
+            Delete
+          </button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
