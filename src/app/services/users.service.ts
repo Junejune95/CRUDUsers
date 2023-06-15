@@ -38,4 +38,10 @@ export class UsersService {
       headers: this.headers,
     });
   }
+
+  onDeleteUser(id:string){
+    return this.httpClient.delete(API_URL + 'user/' + id, {
+      headers: this.headers,
+    });
+  }
 }

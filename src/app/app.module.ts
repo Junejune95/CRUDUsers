@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // modules import
 import { MaterialCustomModule } from './material.module';
@@ -31,6 +32,7 @@ import { ErrorCatchingInterceptor } from './interceptors/error-catching.intercep
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [
     {

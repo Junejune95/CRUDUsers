@@ -1,8 +1,9 @@
 <h1 mat-dialog-title>Delete User</h1>
 <div mat-dialog-content>
-  This dialog showcases the title, close, content and actions elements.
+  Are you sure to delete <b>{{ data.firstName }}</b
+  >?
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
-  <button mat-button color="warn">Delete</button>
+  <button mat-button color="warn" (click)="onDelete()">Delete</button>
 </div>

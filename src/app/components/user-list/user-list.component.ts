@@ -1,6 +1,11 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, Inject, OnInit, VERSION } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { UsersResult, User } from '../../interfaces/users';
@@ -76,7 +81,19 @@ export class UserListComponent implements OnInit {
   }
 
   openDeleteDialog(user: any) {
-    this.dialog.open(Dialog);
+    let dialogRef = this.dialog.open(Dialog, { data: user });
+    dialogRef.afterClosed().subscribe((res) => {
+      // received data from dialog-component
+      console.log(res.userId);
+      this.onDeleteUser(res.userId);
+    });
+  }
+
+  onDeleteUser(id: string) {
+    this._service.onDeleteUser(id).subscribe((res) => {
+      console.log(res);
+      this.getUserList();
+    });
   }
 }
 
@@ -86,4 +103,13 @@ export class UserListComponent implements OnInit {
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })
-export class Dialog {}
+export class Dialog {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<Dialog>
+  ) {}
+
+  onDelete() {
+    this.dialogRef.close({ userId: this.data.id });
+  }
+}

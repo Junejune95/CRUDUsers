@@ -31,7 +31,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     title: new FormControl(''),
     phone: new FormControl(''),
     gender: new FormControl(''),
-    dateOfBirth: new FormControl(new Date().toISOString()),
+    dateOfBirth: new FormControl(),
   });
 
   constructor(
