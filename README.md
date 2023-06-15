@@ -6,30 +6,33 @@ This project is an Angular-based CRUD application that utilizes the DummyAPI as 
 
 * [Introduction](#introduction)
 * [Features](#feature)
-* [Installation](#Installation)
+* [Installation](#installation)
+* [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
 The Angular CRUD project with DummyAPI is a web application built using Angular, Angular Material, and an interceptor for global loading and error handling. It allows users to perform CRUD (Create, Read, Update, Delete) operations on a set of dummy data provided by the DummyAPI.
 
-The project aims to showcase how to implement basic CRUD functionality in Angular, create a responsive user interface using Angular Material components, and handle loading and error scenarios with the help of an interceptor.
+The project aims to showcase how to implement basic CRUD functionality in Angular, create a responsive user interface using Angular Material components.
 
-## Code scaffolding
+## Feature
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- CRUD operations (Create, Read, Update, Delete) for managing data
+- Integration with the DummyAPI for data storage
+- Global loading interceptor to display a loading spinner during HTTP requests
+- Error handling to catch and display errors in a user-friendly manner
+- Responsive user interface designed with Angular Material
 
-## Build
+## Installation
+1. Install the dependencies: `npm install`.
+2. Start the development server: `ng serve`.
+3. Open your browser and visit: http://localhost:4200
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Acknowledgements
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Angular: https://angular.io/
+- DummyAPI: https://dummyapi.io/
+- Angular Material: https://material.angular.io/
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
